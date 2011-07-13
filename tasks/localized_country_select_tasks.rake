@@ -56,6 +56,7 @@ namespace :import do
         code   = row.search("td[@class='g']").inner_text
         code   = code[-code.size, 2]
         name   = row.search("td[@class='v']").inner_text
+        name.gsub!('; [draft=contributed]', '') # Remove text (from nl result)
         countries << { :code => code.to_sym, :name => name.to_s }
         print " ... #{name}"
       end
